@@ -1,0 +1,290 @@
+.detalhes-tecnicos,
+.categoria-section {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 14pt;
+  line-height: 1.6;
+  color: #333;
+  background-color: white;
+}
+
+/* Estilo geral da seção de detalhes */
+.detalhes-tecnicos {
+  margin-top: 2rem;
+  padding: 0;
+}
+
+/* Cartão de detalhes da categoria */
+.categoria-detalhes {
+
+}
+
+/* Cabeçalho da categoria */
+.categoria-header {
+  margin-bottom: 1rem;
+}
+
+.categoria-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Descrição introdutória */
+.introducao-categoria p {
+  margin: 1rem 0;
+  font-style: normal;
+  font-size: 18px !important;
+  text-align: justify;
+}
+/* Se o <p> está DENTRO da div, use: */
+
+/* Lista de definição da categoria */
+.definicao-lista h3 {
+  margin-bottom: 0.5rem;
+}
+
+.definicao-lista ul {
+  list-style-type: disc;
+  margin: 0;
+  padding-left: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  text-align: justify;
+}
+
+/* Métricas (política, prática, objetivo) */
+.categoria-metricas {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+
+.metrica {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.metrica-label {
+  font-weight: bold;
+}
+
+.metrica-valor {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.metrica-valor.baixo {
+  background: white;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+/* Status geral da categoria */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.status.critico {
+  background: white;
+  color: #ff4d4f;
+}
+
+.status.insuficiente {
+  background: #fffbe6;
+  color: #faad14;
+}
+
+.status.adequado {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.status.avancado {
+  background: #e6f7ff;
+  color: #1890ff;
+}
+
+.subcategoria {
+}
+/* Subcategorias e controles */
+.subcategorias-nist {
+  margin-top: 1rem;
+}
+
+.subcategorias-nist .subcategoria {
+  margin-bottom: 1.5rem;
+}
+
+.subcategorias-nist h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.subcategorias-nist ul {
+  list-style-type: square;
+  padding-left: 1.5rem;
+  margin: 0;
+  list-style-type: disc;
+  margin: 0;
+  padding-left: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  text-align: justify;
+}
+
+.subcategorias-nist li {
+  margin: 0.25rem 0;
+}
+
+/* Observações e recomendações */
+.observacoes-criticas {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff2f0;
+  border-radius: 4px;
+}
+
+.observacoes-criticas h3 {
+  margin: 0 0 0.5rem;
+  color: #ff4d4f;
+}
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+}
+
+.score-table td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+}
+
+.score-table strong {
+  font-weight: bold;
+}
+
+.low-score-text {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.low-score-text strong {
+  font-weight: bold;
+  color: #d35400; /* Tom mais escuro de laranja para o texto em negrito */
+}
+
+.low-score-table {
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+.low-score-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.low-score-table th,
+.low-score-table td {
+  padding: 8px 12px;
+  border: 1px solid var(--categoria-color);
+  text-align: left;
+}
+
+.low-score-table th {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  color: inherit;
+}
+
+.low-score-text {
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+/* Table styles */
+.low-score-table {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.low-score-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.low-score-table th,
+.low-score-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.low-score-table th {
+  font-weight: bold;
+  color: black;
+}
+
+.low-score-table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.score-bar-container {
+  width: 100%;
+  height: 24px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-bar {
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.5s ease;
+}
+
+.score-value {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.score-table td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+}
+
+.score-table strong {
+  color: #333;
+}
+
+.td-categoria {
+  width: 200px;
+  font-weight: bold;
+}
+.td-politica {
+  width: 150px;
+}

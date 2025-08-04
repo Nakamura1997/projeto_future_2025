@@ -1,0 +1,447 @@
+.container {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  padding: 24px;
+}
+
+.collapsed {
+  margin-left: 80px;
+}
+
+.header-relatorio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.generate-button {
+  background-color: orange;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.generate-button:hover {
+  background-color: darkorange;
+}
+
+.generate-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  background-color: #fdd;
+  color: #a00;
+  padding: 10px;
+  border: 1px solid #a00;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.loading,
+.no-reports {
+  color: #666;
+  margin-top: 16px;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.report-table th {
+  background-color: #f5f5f5;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.action-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #2980b9;
+}
+
+.action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Estilos para as recomendações */
+.recomendacoes-container {
+  margin-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+}
+
+.recomendacoes-container h6 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2d3748;
+}
+
+.recomendacao-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.recomendacao-header {
+  padding: 1rem;
+  background-color: #f7fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.recomendacao-id-prioridade {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.recomendacao-id {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.recomendacao-prioridade {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.recomendacao-prioridade.alta {
+  background-color: #fff5f5;
+  color: #c53030;
+}
+
+.recomendacao-prioridade.media {
+  background-color: #fffaf0;
+  color: #c05621;
+}
+
+.recomendacao-prioridade.baixa {
+  background-color: #f0fff4;
+  color: #2f855a;
+}
+
+.recomendacao-titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.recomendacao-body {
+  padding: 1rem;
+}
+
+.recomendacao-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-bottom: 0.25rem;
+}
+
+.meta-value {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.recomendacao-detalhes,
+.recomendacao-riscos,
+.recomendacao-justificativa,
+.recomendacao-observacoes {
+  margin-bottom: 1rem;
+}
+
+.recomendacao-detalhes h6,
+.recomendacao-riscos h6,
+.recomendacao-justificativa h6,
+.recomendacao-observacoes h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.recomendacao-detalhes p,
+.recomendacao-riscos p,
+.recomendacao-justificativa p,
+.recomendacao-observacoes p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.recomendacao-footer {
+  padding: 1rem;
+  background-color: #f7fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.recomendacao-acoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-view,
+.btn-edit,
+.btn-delete {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s;
+}
+
+.btn-view {
+  background-color: #ebf8ff;
+  color: #3182ce;
+  border: 1px solid #bee3f8;
+}
+
+.btn-view:hover {
+  background-color: #bee3f8;
+}
+
+.btn-edit {
+  background-color: #fffaf0;
+  color: #dd6b20;
+  border: 1px solid #feebc8;
+}
+
+.btn-edit:hover {
+  background-color: #feebc8;
+}
+
+.btn-delete {
+  background-color: #fff5f5;
+  color: #e53e3e;
+  border: 1px solid #fed7d7;
+}
+
+.btn-delete:hover {
+  background-color: #fed7d7;
+}
+
+.sem-recomendacoes {
+  font-size: 0.9rem;
+  color: #718096;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
+
+.reporContainer {
+  @media print {
+    /* Define o tamanho da página e as margens globais */
+
+    /* Esconde elementos que não devem aparecer no PDF, como botões e filtros */
+    body .report-actions,
+    body .report-filters-panel,
+    body .report-footer-actions {
+      display: none !important;
+    }
+
+    /* Garante que o conteúdo do relatório ocupe todo o espaço */
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      background: #fff; /* Fundo branco para impressão */
+      color: #000; /* Texto preto */
+    }
+
+    /* O container principal do seu relatório */
+    .report-content {
+      margin: 0;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+    }
+
+    /* A MÁGICA DA QUEBRA DE PÁGINA */
+    .report-page {
+      page-break-after: always; /* Força uma quebra de página DEPOIS de cada seção */
+      position: relative; /* Essencial para o posicionamento do rodapé */
+      width: 100%;
+      height: 100%; /* Faz a seção ocupar a altura da página A4 definida */
+    }
+
+    /* Evita que a última página tenha uma quebra desnecessária */
+    .report-page:last-child {
+      page-break-after: avoid;
+    }
+
+    .detalhes-tecnicos .report-page:not(:first-child) {
+      page-break-before: always;
+    }
+    /* Estilo para o nosso rodapé "fixo" em cada página */
+    .page-footer {
+      position: fixed; /* Fixa o rodapé na "viewport" de impressão (a página) */
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0 2cm; /* Alinha com as margens da página */
+      height: 1.5cm; /* Altura do rodapé */
+
+      /* Exemplo de conteúdo do rodapé */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      border-top: 1px solid #ccc;
+    }
+  }
+  @media print {
+    body,
+    html {
+      background: #fff;
+    }
+
+    .no-print-button {
+      display: none !important;
+    }
+
+    /* Define o comportamento de cada "página" que criamos */
+    .report-page {
+      page-break-after: always; /* Quebra a página depois */
+      position: relative; /* Contexto para o rodapé */
+      width: 100%;
+      /* Altura da página A4 (29.7cm) menos as margens verticais (2*2cm) */
+      height: 25.7cm;
+      overflow: hidden;
+    }
+
+    .report-page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* Posicionamento do rodapé dentro da página */
+    .page-footer {
+      position: absolute;
+      bottom: -1.5cm; /* Compensa a margem para ficar na borda inferior */
+      left: 0;
+      right: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 9pt;
+      border-top: 1px solid #ddd;
+      padding-top: 5px;
+    }
+    .footer-logo img {
+      max-width: 80px;
+    }
+    .footer-text {
+      text-align: center;
+    }
+    .footer-page-number {
+      text-align: right;
+    }
+  }
+}
+
+.img-intro {
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Parágrafo com cor neutra */
+.text-gray-700 {
+  color: #4a5568;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+.formulario-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-left: 4px solid #e76738; /* azul-500 */
+  max-width: 42rem; /* equivalente ao max-w-2xl */
+}
+
+.formulario-titulo {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600; /* font-semibold */
+  color: #353230; /* azul-700 */
+  margin-bottom: 0.5rem;
+}
+
+.formulario-atualizacao {
+  font-size: 0.875rem; /* text-sm */
+  color: #374151; /* gray-700 */
+  margin-bottom: 1rem;
+}
+
+.formulario-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}

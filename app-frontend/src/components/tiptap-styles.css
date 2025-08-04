@@ -1,0 +1,28 @@
+/* tiptap-styles.css */
+.editor-container {
+  max-width: 960px;
+  margin: 20px auto;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+.tiptap-editor-content {
+  outline: none;
+  padding: 15px;
+  min-height: 300px;
+  border-top: 1px solid #d1d5db;
+  line-height: 1.6;
+  color: #333;
+}
+
+.tiptap-editor-content .is-editor-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Continue com todos os outros estilos que você tinha no <style jsx global> */

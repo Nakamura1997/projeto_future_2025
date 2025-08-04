@@ -1,0 +1,32 @@
+.snackbar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 250px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: #fff;
+  z-index: 1000;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.success {
+  background-color: #22c55e; /* verde */
+}
+
+.error {
+  background-color: #ef4444; /* vermelho */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

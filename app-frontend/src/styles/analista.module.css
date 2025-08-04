@@ -1,0 +1,138 @@
+.summary-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.summary-badge {
+  flex: 1;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 150px;
+}
+
+.summary-badge p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.summary-badge h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.summary-badge.orange {
+  border-color: #fbbf24;
+}
+
+.summary-badge.blue {
+  border-color: #60a5fa;
+}
+
+.summary-badge.green {
+  border-color: #34d399;
+}
+
+.section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.card-dashboard {
+  flex: 1 1 200px;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.empty-text {
+  text-align: center;
+  color: #9ca3af;
+  padding: 0.5rem;
+}
+
+.view-all {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #eb3c25;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-top: 1rem;
+}
+
+.table th, .table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.status-label {
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.status-label.rascunho { background: #f3f4f6; color: #6b7280; }
+.status-label.em_analise { background: #fef3c7; color: #92400e; }
+.status-label.finalizado, .status-label.concluido { background: #d1fae5; color: #065f46; }
+
+.empty-text {
+  padding: 0.5rem;
+  color: #6b7280;
+  text-align: center;
+}

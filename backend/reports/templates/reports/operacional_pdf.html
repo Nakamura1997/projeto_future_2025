@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Operacional - {{ report_data.cliente.nome }}</title>
+    <style>
+        /* Estilos otimizados para PDF */
+        body { font-family: Arial, sans-serif; line-height: 1.5; color: #333; margin: 0; padding: 20px; font-size: 12px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        .logo { height: 60px; }
+        .title { color: #0056b3; text-align: center; margin-bottom: 20px; font-size: 16px; }
+        .section { margin-bottom: 20px; page-break-inside: avoid; }
+        .section-title { background-color: #0056b3; color: white; padding: 5px 10px; margin-bottom: 10px; border-radius: 3px; font-size: 14px; }
+        .subcategory { margin-bottom: 15px; padding-left: 10px; border-left: 2px solid #0056b3; }
+        .subcategory-title { font-weight: bold; color: #0056b3; margin-bottom: 5px; font-size: 13px; }
+        .resposta { margin-bottom: 10px; padding: 8px; background-color: #f9f9f9; border-radius: 3px; font-size: 11px; }
+        .pergunta { font-weight: bold; margin-bottom: 3px; }
+        .pontuacao { font-style: italic; color: #666; font-size: 11px; }
+        .tabela { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 11px; }
+        .tabela th, .tabela td { border: 1px solid #ddd; padding: 5px; text-align: left; }
+        .tabela th { background-color: #0056b3; color: white; }
+        .tabela tr:nth-child(even) { background-color: #f2f2f2; }
+        .recomendacao { margin-bottom: 8px; padding: 8px; background-color: #fff8e1; border-left: 3px solid #ffc107; font-size: 11px; }
+        .media-baixa { color: #d32f2f; font-weight: bold; }
+        .media-media { color: #ffa000; font-weight: bold; }
+        .media-alta { color: #388e3c; font-weight: bold; }
+        .footer { margin-top: 30px; text-align: center; font-size: 10px; color: #666; border-top: 1px solid #ddd; padding-top: 5px; }
+        .nist-container { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+        .nist-grafico { flex: 1; min-width: 45%; }
+        .nist-tabela { flex: 1; min-width: 45%; }
+        .categoria-block { page-break-inside: avoid; margin-bottom: 30px; }
+        .pergunta-item { margin-bottom: 10px; padding: 8px; border: 1px solid #eee; border-radius: 3px; }
+        .prioridade-alta { background-color: #ffebee; border-left: 3px solid #f44336; }
+        .prioridade-media { background-color: #fff8e1; border-left: 3px solid #ffc107; }
+        .prioridade-baixa { background-color: #e8f5e9; border-left: 3px solid #4caf50; }
+        .radar-chart { width: 100%; height: auto; max-width: 400px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="file://{{ logo_path }}" alt="Logo" class="logo">
+        <div>
+            <h1>Relatório Operacional de Segurança</h1>
+            <h2>{{ report_data.cliente.nome }}</h2>
+            <p>Data: {{ report_data.cliente.data_avaliacao }}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Introdução</h2>
+        <p>Este relatório apresenta os resultados da avaliação de maturidade em segurança da informação realizada em {{ report_data.cliente.data_avaliacao }}. O modelo utilizado para a avaliação foi o NIST CSF 2.0, que analisa a postura de segurança em cinco funções principais: Governar (GV), Identificar (ID), Proteger (PR), Detectar (DE), Responder (RS) e Recuperar (RC).</p>
+        <p>A avaliação considerou tanto aspectos de política (documentação, formalização) quanto de prática (implementação efetiva), com notas variando de 1 (Inicial) a 5 (Otimizado). A média geral obtida foi de <strong>{{ report_data.media_geral.total|floatformat:2 }}</strong>, sendo <strong>{{ report_data.media_geral.politica|floatformat:2 }}</strong> para políticas e <strong>{{ report_data.media_geral.pratica|floatformat:2 }}</strong> para práticas.</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Visão Geral</h2>
+
+        <div class="nist-container">
+            <div class="nist-grafico">
+                <h3>Gráfico Radar - Comparação entre Políticas e Práticas</h3>
+                <img src="data:image/png;base64,{{ radar_chart }}" class="radar-chart">
+            </div>
+
+            <div class="nist-tabela">
+                <h3>Tabela NIST CSF - Médias por Categoria</h3>
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Função NIST</th>
+                            <th>Média Total</th>
+                            <th>Política</th>
+                            <th>Prática</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria in report_data.categorias %}
+                        <tr>
+                            <td>{{ categoria.nome }} ({{ categoria.sigla }})</td>
+                            <td class="{% if categoria.media < 3 %}media-baixa{% elif categoria.media < 4 %}media-media{% else %}media-alta{% endif %}">
+                                {{ categoria.media|floatformat:2 }}
+                            </td>
+                            <td>{{ categoria.politica|floatformat:2 }}</td>
+                            <td>{{ categoria.pratica|floatformat:2 }}</td>
+                            <td>{{ categoria.status }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restante do template permanece igual -->
+    
+    <div class="footer">
+        Relatório gerado em {% now "d/m/Y H:i" %}<br>
+        Future Security &copy; {% now "Y" %}
+    </div>
+</body>
+</html>

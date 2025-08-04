@@ -1,0 +1,46 @@
+# Etapa de Build
+# Use uma imagem Node.js compatível com a versão do seu projeto.
+FROM node:18-alpine AS builder
+
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copia os arquivos de dependência (package.json e lock file) primeiro
+# Isso otimiza o cache do Docker: se as dependências não mudarem, essa camada não é reconstruída.
+COPY package.json package-lock.json ./
+
+# Instala TODAS as dependências (dev e produção) necessárias para o build
+# O "npm ci" é mais rápido e confiável em ambientes de CI/CD pois usa o lock file.
+RUN npm ci
+
+# Copia o restante do código da aplicação para o diretório de trabalho
+# Isso inclui src/, public/, tsconfig.json e outros arquivos relevantes.
+COPY . .
+
+# Executa o build de produção do Next.js
+# Isso gerará o .next/ para o ambiente de produção
+RUN npm run build
+
+# Etapa de Produção (Runtime)
+# Uma imagem Node.js leve para o ambiente de produção.
+FROM node:18-alpine AS runner
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci --only=production # Instala apenas as dependências de produção
+
+# Copia os arquivos gerados pelo build da etapa 'builder'
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+
+
+# Define a variável de ambiente para produção
+ENV NODE_ENV production
+
+# Expõe a porta que o Next.js usará
+EXPOSE 3000
+
+# Comando para iniciar a aplicação Next.js
+CMD ["npm", "start"]

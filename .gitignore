@@ -1,0 +1,15 @@
+.venv
+.env
+
+__pycache__/
+*.pyc
+*.pyo
+node_modules
+node_modules
+
+
+
+backend/venv
+backend/logs
+backend/media/reports/pdfs
+backend/logs/security.log

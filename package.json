@@ -1,0 +1,33 @@
+{
+  "name": "fs3m",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <img src=\"https://github.com/user-attachments/assets/efaea5cf-122e-4625-8c37-c25d2a923c30\" alt=\"image\" width=\"500\"> </p>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "docker-compose up --build -d && npm run migrations",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "frontend:dev": "cd frontend && npm install && npm run dev",
+    "backend:dev": "cd backend && python -m venv .venv && .venv\\Scripts\\activate.ps1 && pip install -r requirements.txt && python manage.py runserver",
+    "build": "docker-compose build",
+    "migrations": "node run-migrations.js",
+    "prod": "docker-compose -f docker-compose.prod.yml up --build -d ",
+    "prod:deploy": "docker-compose -f docker-compose.prod.yml up -d --build && npm run migrations",
+    "reset:prod": "docker-compose down -v --remove-orphans && docker-compose up -d --build",
+    "backend:deploy": "docker compose up -d backend && npm run migrations",
+    "prod:update": "docker-compose -f docker-compose.prod.yml up -d && npm run migrations", 
+    "down:prod": "docker-compose -f docker-compose.prod.yml down --remove-orphans"
+
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "html2pdf.js": "^0.10.3",
+    "lucide-react": "^0.482.0",
+    "react-icons": "^5.5.0"
+  }
+}

@@ -1,0 +1,87 @@
+.btn-orange {
+  outline: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ff7d33;
+  min-width: 200px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding: 16px 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn-orange:hover {
+  opacity: 0.95;
+}
+
+.btn-orange .animation {
+  border-radius: 100%;
+  animation: ripple 0.6s linear infinite;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1),
+      0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1),
+      0 0 0 60px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1),
+      0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1),
+      0 0 0 80px rgba(255, 255, 255, 0);
+  }
+}
+
+/* analises.module.css */
+
+/* Estilo para a explicação do NIST */
+.nistExplanation {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #007bff; /* Uma barra azul para destaque */
+  border-radius: 4px;
+  text-align: justify;
+}
+
+/* Estilos para os botões de relatório */
+.reportButtons {
+  display: flex;
+  gap: 15px; /* Espaçamento entre os botões */
+  margin-top: 20px;
+  margin-bottom: 30px;
+  justify-content: center; /* Centraliza os botões */
+}
+
+.reportButton {
+  background-color: #007bff; /* Cor primária do botão */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reportButton:hover {
+  background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+/* Você já tem estilos para .card, .tituloSecao, .tabelaestilo, .notaBaixa, .notaAlta, tabContainer, tabButton, activeTab, tabContent */
+/* Certifique-se de que eles estão definidos no mesmo arquivo ou importados corretamente */

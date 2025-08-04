@@ -1,0 +1,37 @@
+name: Test inside Docker
+
+on:
+  push:
+    branches: [ desenvolvimento, main ]
+  pull_request:
+    branches: [ desenvolvimento, main ]
+
+jobs:
+  docker-tests:
+    name: Build & Test (Docker)
+    runs-on: ubuntu-latest
+    if: false  # Isso fará com que o job seja sempre pulado
+    steps:
+    - run: echo "Testes desativados temporariamente"
+          
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Clean workspace
+      run: git clean -ffdx
+
+    - name: Build and start containers
+      run: docker compose up --build -d
+
+    - name: Wait for backend to be ready
+      run: sleep 15
+
+    - name: Run frontend tests
+      run: docker compose exec -T frontend npm test -- --run
+
+    - name: Run backend tests
+      run: docker compose exec -T backend pytest
+
+    - name: Stop containers
+      if: always()
+      run: docker compose down

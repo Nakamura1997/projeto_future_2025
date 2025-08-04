@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Imports de arquivos globais */
+@import "./SideBar.css";
+@import "./Header.css";
+@import "./FormSection.css";
+@import "./cardForm.css";
+@import "./login.css";
+@import "./NistTable.css";
+@import "./analises.module.css";
+@import "./FormularioRecomendacao.css";
+@import "./LoadingSpinner.css";
+@import "./ErrorMessage.css";
+@import "./FloatingSocialMenu.css";
+@import "./PerguntaCard.css";
+@import "./RelatorioPage.css";
+@import "./RelatorioNist.css";
+@import "./CoverPage.css";
+@import "./Relatorio_cliente.css";
+@import "./Sumary.css";
+@import "./DetalhesTecnicosPorCategoria.css";
+@import "./cadastro.module.css";
+@import "./CadastrosPage.css";
+@import "./redefinir-senha.css";
+
+@import "./PlanoDeAcao.css";
+@import "./analista.module.css";
+@import "./Modal.css";
+@import "./VisualizarPlano.css";
+@import "./homeCliente.css";
+@import "./snackbar.module.css";
+@import "./cadastro.module.css";
+
+body {
+  background-color: #f3f4f6;
+  font-family: "Inter", sans-serif;
+  color: #111827;
+}
+
+/* Exemplo de layout base */
+/* Scroll invisível cross-browser */
+.main-content {
+  flex: 1;
+  padding: 1rem;
+  background: #f9fafb;
+  color: #333;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin-top: 60px;
+  margin-left: 160px;
+  transition: margin-left 0.3s ease-in-out;
+  overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.main-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Quando a sidebar estiver colapsada */
+.sidebar.collapsed + .main-content {
+  margin-left: 80px;
+}
+
+.main-content-collapsed {
+  margin-left: 80px;
+  transition: margin-left 0.3s ease-in-out;
+  flex: 1;
+  padding: 20px;
+  margin-top: 60px;
+  transition: margin-left 0.3s ease-in-out;
+  height: 100vh;
+}
+
+.sidebar.collapsed + .main-content {
+  margin-left: 80px;
+}
+
+.snackbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0.95;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+.snackbar.success {
+  background: #28a745;
+}
+.snackbar.error {
+  background: #dc3545;
+}
+.snackbar.info {
+  background: #007bff;
+}
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

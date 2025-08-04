@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Operacional - {{ report_data.cliente.nome }}</title>
+    <style>
+        /* Estilos mantidos conforme seu exemplo original */
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #0056b3; padding-bottom: 20px; }
+        .logo { height: 80px; }
+        .title { color: #0056b3; text-align: center; margin-bottom: 30px; }
+        .section { margin-bottom: 30px; page-break-inside: avoid; }
+        .section-title { background-color: #0056b3; color: white; padding: 8px 15px; margin-bottom: 15px; border-radius: 4px; }
+        .subcategory { margin-bottom: 20px; padding-left: 15px; border-left: 3px solid #0056b3; }
+        .subcategory-title { font-weight: bold; color: #0056b3; margin-bottom: 10px; }
+        .resposta { margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-radius: 4px; }
+        .pergunta { font-weight: bold; margin-bottom: 5px; }
+        .pontuacao { font-style: italic; color: #666; }
+        .tabela { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .tabela th, .tabela td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .tabela th { background-color: #0056b3; color: white; }
+        .tabela tr:nth-child(even) { background-color: #f2f2f2; }
+        .recomendacao { margin-bottom: 10px; padding: 10px; background-color: #fff8e1; border-left: 4px solid #ffc107; }
+        .media-baixa { color: #d32f2f; font-weight: bold; }
+        .media-media { color: #ffa000; font-weight: bold; }
+        .media-alta { color: #388e3c; font-weight: bold; }
+        .footer { margin-top: 50px; text-align: center; font-size: 0.8em; color: #666; border-top: 1px solid #ddd; padding-top: 10px; }
+
+        /* Novos estilos para o gráfico e tabela NIST */
+        .nist-container { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
+        .nist-grafico { flex: 1; min-width: 300px; }
+        .nist-tabela { flex: 1; min-width: 300px; }
+        .categoria-block { page-break-inside: avoid; margin-bottom: 40px; }
+        .pergunta-item { margin-bottom: 15px; padding: 10px; border: 1px solid #eee; border-radius: 4px; }
+        .prioridade-alta { background-color: #ffebee; border-left: 4px solid #f44336; }
+        .prioridade-media { background-color: #fff8e1; border-left: 4px solid #ffc107; }
+        .prioridade-baixa { background-color: #e8f5e9; border-left: 4px solid #4caf50; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="file://{{ logo_path }}" alt="Logo" class="logo">
+        <div>
+            <h1>Relatório Operacional de Segurança</h1>
+            <h2>{{ report_data.cliente.nome }}</h2>
+            <p>Data: {{ report_data.cliente.data_avaliacao }}</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Introdução</h2>
+        <p>Este relatório apresenta os resultados da avaliação de maturidade em segurança da informação realizada em {{ report_data.cliente.data_avaliacao }}. O modelo utilizado para a avaliação foi o NIST CSF 2.0, que analisa a postura de segurança em cinco funções principais: Governar (GV), Identificar (ID), Proteger (PR), Detectar (DE), Responder (RS) e Recuperar (RC).</p>
+
+        <p>A avaliação considerou tanto aspectos de política (documentação, formalização) quanto de prática (implementação efetiva), com notas variando de 1 (Inicial) a 5 (Otimizado). A média geral obtida foi de <strong>{{ report_data.media_geral.total|floatformat:2 }}</strong>, sendo <strong>{{ report_data.media_geral.politica|floatformat:2 }}</strong> para políticas e <strong>{{ report_data.media_geral.pratica|floatformat:2 }}</strong> para práticas.</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Visão Geral</h2>
+
+        <div class="nist-container">
+            <div class="nist-grafico">
+                <h3>Gráfico Radar - Comparação entre Políticas e Práticas</h3>
+                <div id="radar-chart-placeholder" style="height: 300px; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                    [Gráfico Radar será renderizado aqui]
+                </div>
+            </div>
+
+            <div class="nist-tabela">
+                <h3>Tabela NIST CSF - Médias por Categoria</h3>
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Função NIST</th>
+                            <th>Média Total</th>
+                            <th>Política</th>
+                            <th>Prática</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria in report_data.categorias %}
+                        <tr>
+                            <td>{{ categoria.nome }} ({{ categoria.sigla }})</td>
+                            <td class="{% if categoria.media < 3 %}media-baixa{% elif categoria.media < 4 %}media-media{% else %}media-alta{% endif %}">
+                                {{ categoria.media|floatformat:2 }}
+                            </td>
+                            <td>{{ categoria.politica|floatformat:2 }}</td>
+                            <td>{{ categoria.pratica|floatformat:2 }}</td>
+                            <td>{{ categoria.status }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Análise Detalhada por Categoria</h2>
+
+        {% for categoria in report_data.categorias %}
+        <div class="categoria-block">
+            <h3>{{ categoria.nome }} ({{ categoria.sigla }}) - Média: {{ categoria.media|floatformat:2 }}</h3>
+
+            {% for subcat in categoria.subcategorias %}
+            <div class="subcategory">
+                <h4 class="subcategory-title">{{ subcat.nome }} ({{ subcat.sigla }})</h4>
+                <p>Média: {{ subcat.media|floatformat:2 }} (Política: {{ subcat.politica|floatformat:2 }}, Prática: {{ subcat.pratica|floatformat:2 }})</p>
+
+                {% for pergunta in subcat.perguntas %}
+                <div class="pergunta-item">
+                    <div class="pergunta">
+                        <strong>{{ pergunta.codigo }}:</strong> {{ pergunta.texto }}
+                    </div>
+                    <div class="pontuacao">
+                        Pontuação: Política = {{ pergunta.politica|default:"-" }}, Prática = {{ pergunta.pratica|default:"-" }}
+                    </div>
+                    {% if pergunta.info_complementar %}
+                    <div class="resposta">
+                        <strong>Informações complementares:</strong> {{ pergunta.info_complementar }}
+                    </div>
+                    {% endif %}
+
+                    {% for rec in report_data.recomendacoes %}
+                        {% if rec.pergunta_associada == pergunta.codigo %}
+                        <div class="recomendacao {% if rec.prioridade == 'alta' %}prioridade-alta{% elif rec.prioridade == 'media' %}prioridade-media{% else %}prioridade-baixa{% endif %}">
+                            <strong>Recomendação ({{ rec.prioridade|upper }}):</strong> {{ rec.nome }}<br>
+                            <strong>Responsável:</strong> {{ rec.responsavel }}<br>
+                            <strong>Detalhes:</strong> {{ rec.detalhes }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Recomendações Prioritárias</h2>
+
+        <h3>Recomendações de Alta Prioridade</h3>
+        {% for rec in report_data.recomendacoes %}
+            {% if rec.prioridade == 'alta' %}
+            <div class="recomendacao prioridade-alta">
+                <strong>{{ rec.nome }}</strong> ({{ rec.categoria }})<br>
+                <strong>Pergunta associada:</strong> {{ rec.pergunta_associada }}<br>
+                <strong>Responsável:</strong> {{ rec.responsavel }}<br>
+                <strong>Detalhes:</strong> {{ rec.detalhes }}
+            </div>
+            {% endif %}
+        {% endfor %}
+
+        <h3>Recomendações de Média Prioridade</h3>
+        {% for rec in report_data.recomendacoes %}
+            {% if rec.prioridade == 'media' %}
+            <div class="recomendacao prioridade-media">
+                <strong>{{ rec.nome }}</strong> ({{ rec.categoria }})<br>
+                <strong>Pergunta associada:</strong> {{ rec.pergunta_associada }}<br>
+                <strong>Responsável:</strong> {{ rec.responsavel }}<br>
+                <strong>Detalhes:</strong> {{ rec.detalhes }}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="footer">
+        Relatório gerado em {% now "d/m/Y H:i" %}<br>
+        Future Security &copy; {% now "Y" %}
+
+    </div>
+</body>
+</html>

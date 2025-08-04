@@ -1,0 +1,52 @@
+# Core Django
+Django==5.1.7
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.5.0
+django-cors-headers==4.7.0
+django-axes==6.0.0
+django-extensions==3.2.3
+django-filter
+django-environ==0.10.0
+
+# Documentação e Swagger
+drf-yasg==1.21.7
+
+# SMTP e segurança
+cryptography==44.0.2
+
+# Database
+psycopg2-binary==2.9.10
+
+# Data Science
+numpy==2.2.4
+scikit-learn==1.6.1
+pandas==2.2.3
+matplotlib==3.10.1
+
+# Excel
+openpyxl==3.1.5
+
+# Relatórios e PDF
+reportlab==4.3.1
+weasyprint==61.2
+pypandoc==1.12
+
+
+# Web
+dash==3.0.1
+flask-cors==5.0.1
+beautifulsoup4==4.12.3
+bleach==6.2.0
+
+# Deploy
+gunicorn==21.2.0
+python-dotenv==1.0.0
+
+# Testes e Segurança
+pytest
+pytest-django
+pytest-cov
+bandit
+playwright==1.44.0
+pdf2docx
+PyPDF2>=3.0.0
